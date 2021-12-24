@@ -1,4 +1,4 @@
-import Ship from '../src/modules/ship-factory';
+import Ship from '../src/modules/Ship';
 
 describe('Ship with a length of 3', () => {
   const ship = new Ship(3);
