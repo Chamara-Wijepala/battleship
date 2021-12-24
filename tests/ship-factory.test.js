@@ -7,10 +7,16 @@ describe('Ship with a length of 3', () => {
     expect(ship).toMatchObject({ length: 3 });
   });
 
+  ship.hit(1);
+  ship.hit(2);
   ship.hit(3);
 
   test('Expect ship.hits to contain 3', () => {
     expect(ship.hits).toContain(3);
+  });
+
+  test('Expect ship.isSunk() to return true', () => {
+    expect(ship.isSunk()).toBe(true);
   });
 });
 
@@ -31,5 +37,9 @@ describe('Ship with a length of 5', () => {
 
   test('Expect ship.hits to be empty array when passed a floating number', () => {
     expect(ship).toMatchObject({ hits: [] });
+  });
+
+  test('Expect ship.isSunk() to return false', () => {
+    expect(ship.isSunk()).toBe(false);
   });
 });

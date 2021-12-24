@@ -10,6 +10,10 @@ class Ship {
     }
     this.hits.push(number);
   }
+
+  isSunk() {
+    return this.hits.length === this.length;
+  }
 }
 
 export default function createShip(length) {
