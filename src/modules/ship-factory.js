@@ -5,7 +5,7 @@ class Ship {
   }
 
   hit(number) {
-    if (number === undefined) {
+    if (!Number.isInteger(number)) {
       return;
     }
     this.hits.push(number);
