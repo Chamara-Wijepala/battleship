@@ -1,6 +1,14 @@
 class Ship {
   constructor(length) {
     this.length = length;
+    this.hits = [];
+  }
+
+  hit(number) {
+    if (number === undefined) {
+      return;
+    }
+    this.hits.push(number);
   }
 }
 
