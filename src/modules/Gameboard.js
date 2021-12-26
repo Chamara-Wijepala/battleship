@@ -17,4 +17,11 @@ export default class Gameboard {
       this.board[coords[i]].hasShip = true;
     }
   }
+
+  receiveAttack(coords, ship) {
+    this.board[coords].isHit = true;
+    if (this.board[coords].hasShip === true) {
+      ship.hit(coords);
+    }
+  }
 }

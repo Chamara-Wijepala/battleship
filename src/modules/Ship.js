@@ -4,11 +4,11 @@ class Ship {
     this.hits = [];
   }
 
-  hit(number) {
-    if (!Number.isInteger(number)) {
+  hit(coords) {
+    if (!Number.isInteger(coords)) {
       return;
     }
-    this.hits.push(number);
+    this.hits.push(coords);
   }
 
   isSunk() {
