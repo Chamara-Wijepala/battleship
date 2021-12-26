@@ -11,4 +11,10 @@ export default class Gameboard {
       this.board.push({ hasShip: false, isHit: false });
     }
   }
+
+  placeShip(coords, ship) {
+    for (let i = 0; i < ship.length; i += 1) {
+      this.board[coords[i]].hasShip = true;
+    }
+  }
 }
