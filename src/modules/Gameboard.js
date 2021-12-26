@@ -24,4 +24,9 @@ export default class Gameboard {
       ship.hit(coords);
     }
   }
+
+  allShipsSunk() {
+    const shipLocations = this.board.filter((square) => square.hasShip === true);
+    shipLocations.every((square) => square.isHit === true);
+  }
 }
