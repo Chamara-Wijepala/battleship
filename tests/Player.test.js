@@ -13,7 +13,9 @@ const shipMock = {
 };
 
 const mockGameBoard = {
-  board: [{ hasShip: true, isHit: false }],
+  board: [
+    { hasShip: true, isHit: false },
+  ],
 
   receiveAttack(coords, ship) {
     this.board[coords].isHit = true;
@@ -23,6 +25,6 @@ const mockGameBoard = {
   },
 };
 
-test('', () => {
-  expect(playerOne.attack(0, mockGameBoard, shipMock)).toBe('attack');
+test('Expect playerOne.attack to return array containing 0', () => {
+  expect(playerOne.attack(0, mockGameBoard, shipMock)).toContain(0);
 });
