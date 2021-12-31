@@ -1,4 +1,4 @@
-import Player from '../src/modules/Player';
+import Player from '../src/modules/classes/Player';
 
 const playerOne = new Player('One');
 

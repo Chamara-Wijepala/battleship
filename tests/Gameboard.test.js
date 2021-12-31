@@ -1,4 +1,4 @@
-import Gameboard from '../src/modules/Gameboard';
+import Gameboard from '../src/modules/classes/Gameboard';
 
 const newBoard = new Gameboard();
 
