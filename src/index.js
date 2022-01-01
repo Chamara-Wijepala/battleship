@@ -21,6 +21,15 @@ function updateGame(player, board) {
   renderBoard(player, board);
 }
 
+computerBoard.addEventListener('click', (e) => {
+  if (e.target.tagName.toLowerCase() === 'div') {
+    const coords = e.target.dataset.id;
+    const ship = computerPlayer.gameBoard.board[coords].shipObject;
+    computerPlayer.gameBoard.receiveAttack(coords, ship);
+    updateGame(computerPlayer, computerBoard);
+  }
+});
+
 computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
 
 startGame();

@@ -35,3 +35,11 @@ body {
 .has-ship {
   background-color: gray;
 }
+
+.is-hit {
+  background-color: #C0392B;
+}
+
+.ship-hit {
+  background-color: #52BE80;
+}
