@@ -13,8 +13,4 @@ export default class Player {
       destroyer: new Ship(2),
     };
   }
-
-  attack(coords, gameBoard, ship) {
-    gameBoard.receiveAttack(coords, ship);
-  }
 }
