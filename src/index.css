@@ -31,3 +31,7 @@ body {
   width: var(--grid-size);
   border: 1px solid black;
 }
+
+.has-ship {
+  background-color: gray;
+}

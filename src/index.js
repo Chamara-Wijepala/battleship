@@ -21,5 +21,7 @@ function updateGame(player, board) {
   renderBoard(player, board);
 }
 
+computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
+
 startGame();
 updateGame(humanPlayer, playerBoard);
