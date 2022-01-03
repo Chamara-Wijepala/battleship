@@ -28,6 +28,6 @@ export default class Gameboard {
 
   allShipsSunk() {
     const shipLocations = this.board.filter((square) => square.hasShip === true);
-    shipLocations.every((square) => square.isHit === true);
+    return shipLocations.every((square) => square.isHit === true);
   }
 }
