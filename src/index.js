@@ -18,6 +18,16 @@ function startGame() {
   renderBoard(computerPlayer, computerBoard);
 }
 
+let currentPlayer = humanPlayer;
+
+function switchPlayer() {
+  if (currentPlayer === humanPlayer) {
+    currentPlayer = computerPlayer;
+  } else {
+    currentPlayer = humanPlayer;
+  }
+}
+
 function gameOver() {
   overlay.style.display = 'block';
 }
@@ -27,6 +37,8 @@ function updateGame(player, board) {
   renderBoard(player, board);
   if (player.gameBoard.allShipsSunk()) {
     gameOver();
+  } else {
+    switchPlayer();
   }
 }
 
