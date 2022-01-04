@@ -1,9 +1,6 @@
 import './index.css';
 import Player from './modules/classes/Player';
-import {
-  renderBoard,
-  clearBoard,
-} from './modules/renderDom';
+import { renderBoard, clearBoard } from './modules/renderDom';
 import computerMove from './modules/computerAi';
 import gameOver from './modules/gameOver';
 
@@ -42,10 +39,11 @@ function computerTurn() {
   updateGame(humanPlayer, playerBoard);
 }
 
-// Run receiveAttack on clicked square if currentPlayer is humanPlayer
+// Run receiveAttack on clicked square if currentPlayer is humanPlayer,
+// then switch player and call computerTurn()
 computerBoard.addEventListener('click', (e) => {
-  if (currentPlayer === humanPlayer) {
-    const coords = e.target.dataset.id;
+  const coords = e.target.dataset.id;
+  if (currentPlayer === humanPlayer && computerPlayer.gameBoard.board[coords].isHit === false) {
     const ship = computerPlayer.gameBoard.board[coords].shipObject;
     computerPlayer.gameBoard.receiveAttack(coords, ship);
     switchPlayer();
