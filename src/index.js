@@ -4,11 +4,11 @@ import {
   renderBoard,
   clearBoard,
 } from './modules/renderDom';
+import computerMove from './modules/computerAi';
+import gameOver from './modules/gameOver';
 
 const playerBoard = document.getElementById('player-board');
 const computerBoard = document.getElementById('computer-board');
-const overlay = document.getElementById('overlay');
-const overlayButton = document.getElementById('overlay-button');
 
 const humanPlayer = new Player('Human');
 const computerPlayer = new Player('Computer');
@@ -28,10 +28,6 @@ function switchPlayer() {
   }
 }
 
-function gameOver() {
-  overlay.style.display = 'block';
-}
-
 function updateGame(player, board) {
   clearBoard(board);
   renderBoard(player, board);
@@ -42,9 +38,9 @@ function updateGame(player, board) {
   }
 }
 
-// Run receiveAttack on clicked square
+// Run receiveAttack on clicked square if currentPlayer is humanPlayer
 computerBoard.addEventListener('click', (e) => {
-  if (e.target.tagName.toLowerCase() === 'div') {
+  if (currentPlayer === humanPlayer) {
     const coords = e.target.dataset.id;
     const ship = computerPlayer.gameBoard.board[coords].shipObject;
     computerPlayer.gameBoard.receiveAttack(coords, ship);
@@ -52,10 +48,7 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-overlayButton.addEventListener('click', () => {
-  window.location.reload();
-});
-
 computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
+humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();

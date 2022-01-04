@@ -3,7 +3,7 @@ function pickRandomLocation(suitableLocations) {
   return location;
 }
 
-export default function findSuitableLocation(opponentBoard) {
+function findSuitableLocation(opponentBoard) {
   const suitableLocations = [];
   opponentBoard.board.forEach((object, index) => {
     if (object.isHit === false) {
@@ -11,4 +11,10 @@ export default function findSuitableLocation(opponentBoard) {
     }
   });
   return pickRandomLocation(suitableLocations);
+}
+
+export default function computerMove(humanPlayer) {
+  const coords = findSuitableLocation(humanPlayer.gameBoard);
+  const ship = humanPlayer.gameBoard.board[coords].shipObject;
+  humanPlayer.gameBoard.receiveAttack(coords, ship);
 }
