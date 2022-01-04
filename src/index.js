@@ -33,9 +33,13 @@ function updateGame(player, board) {
   renderBoard(player, board);
   if (player.gameBoard.allShipsSunk()) {
     gameOver();
-  } else {
-    switchPlayer();
   }
+}
+
+function computerTurn() {
+  computerMove(humanPlayer);
+  switchPlayer();
+  updateGame(humanPlayer, playerBoard);
 }
 
 // Run receiveAttack on clicked square if currentPlayer is humanPlayer
@@ -44,7 +48,9 @@ computerBoard.addEventListener('click', (e) => {
     const coords = e.target.dataset.id;
     const ship = computerPlayer.gameBoard.board[coords].shipObject;
     computerPlayer.gameBoard.receiveAttack(coords, ship);
+    switchPlayer();
     updateGame(computerPlayer, computerBoard);
+    computerTurn();
   }
 });
 
