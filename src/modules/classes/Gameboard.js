@@ -12,10 +12,15 @@ export default class Gameboard {
     }
   }
 
-  placeShip(coords, ship) {
+  placeShip(coords, ship, direction) {
     for (let i = 0; i < ship.length; i += 1) {
-      this.board[coords + i].hasShip = true;
-      this.board[coords + i].shipObject = ship;
+      if (direction === 0) {
+        this.board[coords + i].hasShip = true;
+        this.board[coords + i].shipObject = ship;
+      } else {
+        this.board[coords + i * 10].hasShip = true;
+        this.board[coords + i * 10].shipObject = ship;
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 import './index.css';
 import Player from './modules/classes/Player';
 import { renderBoard, clearBoard } from './modules/renderDom';
-import computerMove from './modules/computerAi';
+import { computerMove, placeComputerShips } from './modules/computerAi';
 import gameOver from './modules/gameOver';
 
 const playerBoard = document.getElementById('player-board');
@@ -52,7 +52,8 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
+placeComputerShips(computerPlayer);
+// computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
 humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();

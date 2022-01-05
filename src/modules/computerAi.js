@@ -1,6 +1,6 @@
-function pickRandomLocation(suitableLocations) {
-  const location = suitableLocations[Math.floor(Math.random() * suitableLocations.length)];
-  return location;
+function pickRandomElement(array) {
+  const element = array[Math.floor(Math.random() * array.length)];
+  return element;
 }
 
 function findSuitableLocation(opponentBoard) {
@@ -10,11 +10,22 @@ function findSuitableLocation(opponentBoard) {
       suitableLocations.push(index);
     }
   });
-  return pickRandomLocation(suitableLocations);
+  return pickRandomElement(suitableLocations);
 }
 
-export default function computerMove(humanPlayer) {
+function computerMove(humanPlayer) {
   const coords = findSuitableLocation(humanPlayer.gameBoard);
   const ship = humanPlayer.gameBoard.board[coords].shipObject;
   humanPlayer.gameBoard.receiveAttack(coords, ship);
 }
+
+function placeComputerShips(computerPlayer) {
+  const direction = [0, 1];
+  const randomDirection = pickRandomElement(direction);
+  computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier, randomDirection);
+}
+
+export {
+  computerMove,
+  placeComputerShips,
+};
