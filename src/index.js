@@ -48,7 +48,7 @@ computerBoard.addEventListener('click', (e) => {
     computerPlayer.gameBoard.receiveAttack(coords, ship);
     switchPlayer();
     updateGame(computerPlayer, computerBoard);
-    computerTurn();
+    setTimeout(computerTurn, 300);
   }
 });
 

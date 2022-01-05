@@ -56,6 +56,10 @@ main {
   background-color: rgba(133, 193, 233, 0.25);
 }
 
+#computer-board .square:hover {
+  background-color: rgba(133, 193, 233, 0.75);
+}
+
 .has-ship {
   background-color: #2C3E50;
 }
