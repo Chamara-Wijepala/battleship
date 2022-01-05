@@ -53,7 +53,6 @@ computerBoard.addEventListener('click', (e) => {
 });
 
 placeComputerShips(computerPlayer);
-// computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier);
 humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();

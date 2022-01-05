@@ -68,7 +68,15 @@ main {
   background-color: #D0D3D4;
 }
 
+#computer-board .is-hit:hover {
+  background-color: #D0D3D4;
+}
+
 .ship-hit {
+  background-color: #C0392B;
+}
+
+#computer-board .ship-hit:hover {
   background-color: #C0392B;
 }
 
