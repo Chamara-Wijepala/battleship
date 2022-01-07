@@ -19,10 +19,17 @@ function computerMove(humanPlayer) {
   humanPlayer.gameBoard.receiveAttack(coords, ship);
 }
 
-function findSuitableStart(computerPlayer, ship) {
-  const suitableStart = Math.abs(
-    Math.floor(Math.random() * computerPlayer.gameBoard.board.length - ship.length),
-  );
+function findSuitableStart(computerPlayer, ship, direction) {
+  let suitableStart;
+  if (direction === 'Horizontal') {
+    suitableStart = Math.abs(
+      Math.floor(Math.random() * computerPlayer.gameBoard.board.length - ship.length),
+    );
+  } else {
+    suitableStart = Math.abs(
+      Math.floor(Math.random() * computerPlayer.gameBoard.board.length - (ship.length * 10)),
+    );
+  }
   return suitableStart;
 }
 
