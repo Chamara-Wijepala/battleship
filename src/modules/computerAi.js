@@ -23,7 +23,7 @@ function findSuitableStart(computerPlayer, ship, direction) {
   let suitableStart;
   if (direction === 'Horizontal') {
     suitableStart = Math.abs(
-      Math.floor(Math.random() * computerPlayer.gameBoard.board.length - ship.length),
+      Math.floor(Math.random() * computerPlayer.gameBoard.board.length - (ship.length)),
     );
   } else {
     suitableStart = Math.abs(
@@ -33,14 +33,24 @@ function findSuitableStart(computerPlayer, ship, direction) {
   return suitableStart;
 }
 
+function checkCollisions(start, ship) {
+  const shipPlacement = [];
+  for (let i = 0; i < ship.length; i += 1) {
+    shipPlacement.push(start + i);
+  }
+  return shipPlacement;
+}
+
 function placeComputerShips(computerPlayer) {
   const direction = ['Horizontal', 'Vertical'];
   const randomDirection = pickRandomElement(direction);
-  computerPlayer.gameBoard.placeShip(0, computerPlayer.ships.carrier, randomDirection);
+  const start = findSuitableStart(computerPlayer, computerPlayer.ships.carrier, randomDirection);
+  computerPlayer.gameBoard.placeShip(start, computerPlayer.ships.carrier, randomDirection);
 }
 
 export {
   computerMove,
   placeComputerShips,
   findSuitableStart,
+  checkCollisions,
 };

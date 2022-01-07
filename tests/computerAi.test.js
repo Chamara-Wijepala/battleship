@@ -1,4 +1,4 @@
-import { findSuitableStart } from '../src/modules/computerAi';
+import { findSuitableStart, checkCollisions } from '../src/modules/computerAi';
 import Player from '../src/modules/classes/Player';
 
 const newPlayer = new Player('playerName');
@@ -20,6 +20,14 @@ describe('Tests for carrier ship', () => {
 
   test('Expect findSuitableStart with a vertical ship to not return an integer greater than 59', () => {
     expect(findSuitableStart(newPlayer, ship, 'Vertical')).not.toBeGreaterThan(59);
+  });
+
+  test('Expect checkCollisions to not return an array containing 9', () => {
+    expect(checkCollisions(0, ship)).not.toContain(9);
+  });
+
+  test('Expect checkCollisions to return an array containing 19', () => {
+    expect(checkCollisions(15, ship)).toContain(19);
   });
 });
 
