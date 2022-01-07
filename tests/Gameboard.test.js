@@ -6,7 +6,7 @@ describe('Ship mock with a length of 3', () => {
   const shipMock = {
     length: 3,
   };
-  newBoard.placeShip([0, 1, 2], shipMock);
+  newBoard.placeShip(0, shipMock, 'Horizontal');
 
   test('Expect hasShip on ship location to be true', () => {
     expect(newBoard.board[0]).toMatchObject({ hasShip: true });
