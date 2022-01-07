@@ -34,11 +34,15 @@ function findSuitableStart(computerPlayer, ship, direction) {
 }
 
 function checkCollisions(start, ship) {
-  const shipPlacement = [];
+  const collisions = [9, 19, 29, 39, 49, 59, 69, 79, 89];
+  const shipLength = [];
   for (let i = 0; i < ship.length; i += 1) {
-    shipPlacement.push(start + i);
+    shipLength.push(start + i);
   }
-  return shipPlacement;
+  const collidesWithRightEdge = shipLength.some(
+    (value) => collisions.some((number) => number === value),
+  );
+  return collidesWithRightEdge;
 }
 
 function placeComputerShips(computerPlayer) {

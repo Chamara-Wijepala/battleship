@@ -22,12 +22,12 @@ describe('Tests for carrier ship', () => {
     expect(findSuitableStart(newPlayer, ship, 'Vertical')).not.toBeGreaterThan(59);
   });
 
-  test('Expect checkCollisions to not return an array containing 9', () => {
-    expect(checkCollisions(0, ship)).not.toContain(9);
+  test('Expect checkCollisions to be falsy', () => {
+    expect(checkCollisions(0, ship)).toBeFalsy();
   });
 
-  test('Expect checkCollisions to return an array containing 19', () => {
-    expect(checkCollisions(15, ship)).toContain(19);
+  test('Expect checkCollisions to be truthy', () => {
+    expect(checkCollisions(16, ship)).toBeTruthy();
   });
 });
 
