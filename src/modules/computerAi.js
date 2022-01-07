@@ -45,11 +45,17 @@ function checkCollisions(start, ship) {
   return collidesWithRightEdge;
 }
 
-function placeComputerShips(computerPlayer) {
+function placeComputerShips(computerPlayer, ship) {
   const direction = ['Horizontal', 'Vertical'];
   const randomDirection = pickRandomElement(direction);
-  const start = findSuitableStart(computerPlayer, computerPlayer.ships.carrier, randomDirection);
-  computerPlayer.gameBoard.placeShip(start, computerPlayer.ships.carrier, randomDirection);
+  const start = findSuitableStart(computerPlayer, ship, randomDirection);
+  const collides = checkCollisions(start, ship);
+
+  if (collides === true && randomDirection === 'Horizontal') {
+    placeComputerShips(computerPlayer, ship);
+  } else {
+    computerPlayer.gameBoard.placeShip(start, ship, randomDirection);
+  }
 }
 
 export {

@@ -52,7 +52,8 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-placeComputerShips(computerPlayer);
+// Must run succesfully for each ship in computerPlayer.ships
+placeComputerShips(computerPlayer, computerPlayer.ships.carrier);
 humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();
