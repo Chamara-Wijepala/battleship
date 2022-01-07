@@ -14,7 +14,7 @@ export default class Gameboard {
 
   placeShip(coords, ship, direction) {
     for (let i = 0; i < ship.length; i += 1) {
-      if (direction === 0) {
+      if (direction === 'Horizontal') {
         this.board[coords + i].hasShip = true;
         this.board[coords + i].shipObject = ship;
       } else {
