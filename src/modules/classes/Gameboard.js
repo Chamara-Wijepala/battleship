@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 export default class Gameboard {
   constructor() {
     this.board = [];
@@ -13,6 +14,8 @@ export default class Gameboard {
   }
 
   placeShip(coords, ship, direction) {
+    ship.start = coords;
+    ship.direction = direction;
     for (let i = 0; i < ship.length; i += 1) {
       if (direction === 'Horizontal') {
         this.board[coords + i].hasShip = true;
@@ -20,6 +23,18 @@ export default class Gameboard {
       } else {
         this.board[coords + i * 10].hasShip = true;
         this.board[coords + i * 10].shipObject = ship;
+      }
+    }
+  }
+
+  removeShip(coords, ship, direction) {
+    for (let i = 0; i < ship.length; i += 1) {
+      if (direction === 'Horizontal') {
+        this.board[coords + i].hasShip = false;
+        this.board[coords + i].shipObject = undefined;
+      } else {
+        this.board[coords + i * 10].hasShip = true;
+        this.board[coords + i * 10].shipObject = undefined;
       }
     }
   }
