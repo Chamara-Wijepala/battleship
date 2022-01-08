@@ -33,25 +33,34 @@ function findSuitableStart(computerPlayer, ship, direction) {
   return suitableStart;
 }
 
-function checkCollisions(start, ship) {
+// Creates an array of the locations a ship will be placed on and checks if it will collide with the
+// right edge or with other ships.
+function checkCollisions(start, ship, computerPlayer, randomDirection) {
   const collisions = [9, 19, 29, 39, 49, 59, 69, 79, 89];
   const shipLength = [];
   for (let i = 0; i < ship.length; i += 1) {
-    shipLength.push(start + i);
+    if (randomDirection === 'Horizontal') {
+      shipLength.push(start + i);
+    } else {
+      shipLength.push(start + i * 10);
+    }
   }
   const collidesWithRightEdge = shipLength.some(
     (value) => collisions.some((number) => number === value),
   );
-  return collidesWithRightEdge;
+  const collidesWithShip = shipLength.some(
+    (value) => computerPlayer.gameBoard.board[value].hasShip,
+  );
+  if (collidesWithShip === true || collidesWithRightEdge === true) { return true; }
+  return false;
 }
 
 function placeComputerShips(computerPlayer, ship) {
   const direction = ['Horizontal', 'Vertical'];
   const randomDirection = pickRandomElement(direction);
   const start = findSuitableStart(computerPlayer, ship, randomDirection);
-  const collides = checkCollisions(start, ship);
-
-  if (collides === true && randomDirection === 'Horizontal') {
+  const collides = checkCollisions(start, ship, computerPlayer, randomDirection);
+  if (collides === true) {
     placeComputerShips(computerPlayer, ship);
   } else {
     computerPlayer.gameBoard.placeShip(start, ship, randomDirection);

@@ -2,6 +2,7 @@ import { findSuitableStart, checkCollisions } from '../src/modules/computerAi';
 import Player from '../src/modules/classes/Player';
 
 const newPlayer = new Player('playerName');
+newPlayer.gameBoard.placeShip(0, newPlayer.ships.battleship, 'Horizontal');
 
 describe('Tests for carrier ship', () => {
   const ship = newPlayer.ships.carrier;
@@ -23,11 +24,11 @@ describe('Tests for carrier ship', () => {
   });
 
   test('Expect checkCollisions to be falsy', () => {
-    expect(checkCollisions(0, ship)).toBeFalsy();
+    expect(checkCollisions(4, ship, newPlayer)).toBeFalsy();
   });
 
   test('Expect checkCollisions to be truthy', () => {
-    expect(checkCollisions(16, ship)).toBeTruthy();
+    expect(checkCollisions(3, ship, newPlayer)).toBeTruthy();
   });
 });
 
