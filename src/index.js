@@ -1,7 +1,8 @@
 import './index.css';
 import Player from './modules/classes/Player';
 import { renderBoard, clearBoard } from './modules/renderDom';
-import { computerMove, placeComputerShips } from './modules/computerAi';
+import { placeShips } from './modules/placeShips';
+import computerMove from './modules/computerAi';
 import gameOver from './modules/gameOver';
 
 const playerBoard = document.getElementById('player-board');
@@ -15,9 +16,16 @@ function startGame() {
   renderBoard(computerPlayer, computerBoard);
 }
 
+// Place computer ships randomly
 const computerShips = Object.entries(computerPlayer.ships);
 computerShips.forEach((ship) => {
-  placeComputerShips(computerPlayer, ship[1]);
+  placeShips(computerPlayer, ship[1]);
+});
+
+// Place player ships randomly
+const playerShips = Object.entries(humanPlayer.ships);
+playerShips.forEach((ship) => {
+  placeShips(humanPlayer, ship[1]);
 });
 
 let currentPlayer = humanPlayer;
@@ -56,7 +64,5 @@ computerBoard.addEventListener('click', (e) => {
     setTimeout(computerTurn, 300);
   }
 });
-
-humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();
