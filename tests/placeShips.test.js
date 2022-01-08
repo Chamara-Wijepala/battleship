@@ -1,4 +1,4 @@
-import { findSuitableStart, checkCollisions } from '../src/modules/computerAi';
+import { findSuitableStart, checkCollisions } from '../src/modules/placeShips';
 import Player from '../src/modules/classes/Player';
 
 const newPlayer = new Player('playerName');
