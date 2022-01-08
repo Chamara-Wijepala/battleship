@@ -15,6 +15,11 @@ function startGame() {
   renderBoard(computerPlayer, computerBoard);
 }
 
+const computerShips = Object.entries(computerPlayer.ships);
+computerShips.forEach((ship) => {
+  placeComputerShips(computerPlayer, ship[1]);
+});
+
 let currentPlayer = humanPlayer;
 
 function switchPlayer() {
@@ -52,8 +57,6 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-// Must run succesfully for each ship in computerPlayer.ships
-placeComputerShips(computerPlayer, computerPlayer.ships.carrier);
 humanPlayer.gameBoard.placeShip(0, humanPlayer.ships.carrier);
 
 startGame();
