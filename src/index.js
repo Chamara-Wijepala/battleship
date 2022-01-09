@@ -22,12 +22,6 @@ computerShips.forEach((ship) => {
   placeShips(computerPlayer, ship[1]);
 });
 
-// Place player ships randomly
-const playerShips = Object.entries(humanPlayer.ships);
-playerShips.forEach((ship) => {
-  placeShips(humanPlayer, ship[1]);
-});
-
 let currentPlayer = humanPlayer;
 
 function switchPlayer() {

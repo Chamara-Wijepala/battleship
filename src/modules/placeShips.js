@@ -19,11 +19,11 @@ function findSuitableStart(player, ship, direction) {
 
 // Creates an array of the locations a ship will be placed on and checks if it will collide with the
 // right edge or with other ships.
-function checkCollisions(start, ship, player, randomDirection) {
+function checkCollisions(start, ship, player, direction) {
   const collisions = [9, 19, 29, 39, 49, 59, 69, 79, 89];
   const shipLength = [];
   for (let i = 0; i < ship.length; i += 1) {
-    if (randomDirection === 'Horizontal') {
+    if (direction === 'Horizontal') {
       shipLength.push(start + i);
     } else {
       shipLength.push(start + i * 10);
