@@ -27,18 +27,6 @@ export default class Gameboard {
     }
   }
 
-  removeShip(coords, ship, direction) {
-    for (let i = 0; i < ship.length; i += 1) {
-      if (direction === 'Horizontal') {
-        this.board[coords + i].hasShip = false;
-        this.board[coords + i].shipObject = undefined;
-      } else {
-        this.board[coords + i * 10].hasShip = true;
-        this.board[coords + i * 10].shipObject = undefined;
-      }
-    }
-  }
-
   receiveAttack(coords, ship) {
     this.board[coords].isHit = true;
     if (this.board[coords].hasShip === true) {
