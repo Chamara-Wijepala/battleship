@@ -11,7 +11,7 @@ function findSuitableStart(player, ship, direction) {
     );
   } else {
     suitableStart = Math.abs(
-      Math.floor(Math.random() * player.gameBoard.board.length - (ship.length * 10)),
+      Math.floor(Math.random() * player.gameBoard.board.length - (ship.length * 9)),
     );
   }
   return suitableStart;
