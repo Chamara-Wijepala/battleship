@@ -1,4 +1,4 @@
-function renderBoard(player, boardElement) {
+function renderBoard(player, boardElement, coords) {
   for (let i = 0; i < player.gameBoard.board.length; i += 1) {
     const square = document.createElement('div');
     square.classList.add('square');
@@ -11,6 +11,11 @@ function renderBoard(player, boardElement) {
     }
     if (player.gameBoard.board[i].hasShip === true && player.gameBoard.board[i].isHit === true) {
       square.classList.add('ship-hit');
+    }
+    if (coords !== undefined) {
+      if (coords === i) {
+        square.classList.add('ship-hover');
+      }
     }
     boardElement.appendChild(square);
   }

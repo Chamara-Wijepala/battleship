@@ -32,9 +32,12 @@ function switchPlayer() {
   }
 }
 
-function updateGame(player, board) {
+function updateGame(player, board, coords) {
   clearBoard(board);
-  renderBoard(player, board);
+  renderBoard(player, board, coords);
+}
+
+function checkIfGameOver(player) {
   if (player.gameBoard.allShipsSunk()) {
     gameOver();
   }
@@ -44,6 +47,7 @@ function computerTurn() {
   computerMove(humanPlayer);
   switchPlayer();
   updateGame(humanPlayer, playerBoard);
+  checkIfGameOver(humanPlayer);
 }
 
 // Run receiveAttack on clicked square if currentPlayer is humanPlayer,
@@ -55,8 +59,14 @@ computerBoard.addEventListener('click', (e) => {
     computerPlayer.gameBoard.receiveAttack(coords, ship);
     switchPlayer();
     updateGame(computerPlayer, computerBoard);
+    checkIfGameOver(computerPlayer);
     setTimeout(computerTurn, 300);
   }
+});
+
+playerBoard.addEventListener('mouseover', (e) => {
+  const coords = Number(e.target.dataset.id);
+  updateGame(humanPlayer, playerBoard, coords);
 });
 
 startGame();

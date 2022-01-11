@@ -80,6 +80,10 @@ main {
   background-color: #C0392B;
 }
 
+.ship-hover {
+  background-color: rgba(44, 62, 80, 0.33);
+}
+
 #overlay {
   position: fixed;
   display: none;
