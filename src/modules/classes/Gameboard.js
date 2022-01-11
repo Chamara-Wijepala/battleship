@@ -9,7 +9,7 @@ export default class Gameboard {
 
   createBoard() {
     for (let i = 0; i < 100; i += 1) {
-      this.board.push({ hasShip: false, isHit: false });
+      this.board.push({ hasShip: false, isHit: false, shipHover: false });
     }
   }
 
@@ -23,6 +23,19 @@ export default class Gameboard {
       } else {
         this.board[coords + i * 10].hasShip = true;
         this.board[coords + i * 10].shipObject = ship;
+      }
+    }
+  }
+
+  shipHover(coords, ship, direction) {
+    this.board.forEach((square) => {
+      square.shipHover = false;
+    });
+    for (let i = 0; i < ship.length; i += 1) {
+      if (direction === 'Horizontal') {
+        this.board[coords + i].shipHover = true;
+      } else {
+        this.board[coords + i * 10].shipHover = true;
       }
     }
   }

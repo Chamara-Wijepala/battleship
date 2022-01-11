@@ -32,9 +32,9 @@ function switchPlayer() {
   }
 }
 
-function updateGame(player, board, coords) {
+function updateGame(player, board) {
   clearBoard(board);
-  renderBoard(player, board, coords);
+  renderBoard(player, board);
 }
 
 function checkIfGameOver(player) {
@@ -66,7 +66,9 @@ computerBoard.addEventListener('click', (e) => {
 
 playerBoard.addEventListener('mouseover', (e) => {
   const coords = Number(e.target.dataset.id);
-  updateGame(humanPlayer, playerBoard, coords);
+  const currentShip = humanPlayer.ships.carrier;
+  humanPlayer.gameBoard.shipHover(coords, currentShip, 'Horizontal');
+  updateGame(humanPlayer, playerBoard);
 });
 
 startGame();
