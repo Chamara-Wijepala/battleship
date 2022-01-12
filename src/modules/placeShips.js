@@ -30,17 +30,19 @@ function checkCollisions(start, ship, player, direction) {
       shipLength.push(start + i * 10);
     }
   }
-  const collidesWithRightEdge = shipLength.some(
+  const filteredShipLength = shipLength.filter((value) => value < 100);
+  const collidesWithRightEdge = filteredShipLength.some(
     (value) => rightCollisions.some((number) => number === value),
   );
-  const collidesWithLeftEdge = shipLength.some(
+  const collidesWithLeftEdge = filteredShipLength.some(
     (value) => leftCollisions.some((number) => number === value),
   );
-  const collidesWithShip = shipLength.some(
+  const collidesWithShip = filteredShipLength.some(
     (value) => player.gameBoard.board[value].hasShip,
   );
-  if ((collidesWithRightEdge === true && collidesWithLeftEdge === true)
-    || (collidesWithShip === true)) { return true; }
+  if ((collidesWithRightEdge && collidesWithLeftEdge) || (collidesWithShip)) {
+    return true;
+  }
   return false;
 }
 
