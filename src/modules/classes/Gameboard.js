@@ -27,15 +27,17 @@ export default class Gameboard {
     }
   }
 
-  shipHover(coords, ship, direction) {
+  shipHover(coords, ship, direction, collides) {
     this.board.forEach((square) => {
       square.shipHover = false;
     });
-    for (let i = 0; i < ship.length; i += 1) {
-      if (direction === 'Horizontal') {
-        this.board[coords + i].shipHover = true;
-      } else {
-        this.board[coords + i * 10].shipHover = true;
+    if (!collides) {
+      for (let i = 0; i < ship.length; i += 1) {
+        if (direction === 'Horizontal') {
+          this.board[coords + i].shipHover = true;
+        } else {
+          this.board[coords + i * 10].shipHover = true;
+        }
       }
     }
   }

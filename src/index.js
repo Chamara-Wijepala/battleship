@@ -1,7 +1,8 @@
+/* eslint-disable no-param-reassign */
 import './index.css';
 import Player from './modules/classes/Player';
 import { renderBoard, clearBoard } from './modules/renderDom';
-import { placeShips } from './modules/placeShips';
+import { placeShips, checkCollisions } from './modules/placeShips';
 import computerMove from './modules/computerAi';
 import gameOver from './modules/gameOver';
 
@@ -67,7 +68,9 @@ computerBoard.addEventListener('click', (e) => {
 playerBoard.addEventListener('mouseover', (e) => {
   const coords = Number(e.target.dataset.id);
   const currentShip = humanPlayer.ships.carrier;
-  humanPlayer.gameBoard.shipHover(coords, currentShip, 'Horizontal');
+  const direction = 'Horizontal';
+  const collides = checkCollisions(coords, currentShip, humanPlayer, direction);
+  humanPlayer.gameBoard.shipHover(coords, currentShip, direction, collides);
   updateGame(humanPlayer, playerBoard);
 });
 
