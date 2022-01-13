@@ -65,12 +65,41 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-playerBoard.addEventListener('mouseover', (e) => {
+function getPlayerShipData(e) {
   const coords = Number(e.target.dataset.id);
   const currentShip = humanPlayer.ships.carrier;
-  const direction = 'Horizontal';
+  const direction = 'Vertical';
   const collides = checkCollisions(coords, currentShip, humanPlayer, direction);
-  humanPlayer.gameBoard.shipHover(coords, currentShip, direction, collides);
+  return {
+    coords,
+    currentShip,
+    direction,
+    collides,
+  };
+}
+
+// Displays current ship on playerBoard when hovering over it
+playerBoard.addEventListener('mousemove', (e) => {
+  const shipData = getPlayerShipData(e);
+  humanPlayer.gameBoard.shipHover(
+    shipData.coords,
+    shipData.currentShip,
+    shipData.direction,
+    shipData.collides,
+  );
+  updateGame(humanPlayer, playerBoard);
+});
+
+// Places a ship on playerBoard when you click on a square
+playerBoard.addEventListener('click', (e) => {
+  const shipData = getPlayerShipData(e);
+  if (!shipData.collides) {
+    humanPlayer.gameBoard.placeShip(
+      shipData.coords,
+      shipData.currentShip,
+      shipData.direction,
+    );
+  }
   updateGame(humanPlayer, playerBoard);
 });
 
