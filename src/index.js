@@ -65,10 +65,19 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
+const playerShips = Object.entries(humanPlayer.ships);
+let shipNumber = 0;
+
+function getCurrentShip() {
+  const currentShip = playerShips[shipNumber][1];
+  return currentShip;
+}
+
+// This function needs to return corrent ship and direction
 function getPlayerShipData(e) {
   const coords = Number(e.target.dataset.id);
-  const currentShip = humanPlayer.ships.carrier;
-  const direction = 'Vertical';
+  const currentShip = getCurrentShip();
+  const direction = 'Horizontal';
   const collides = checkCollisions(coords, currentShip, humanPlayer, direction);
   return {
     coords,
@@ -99,6 +108,7 @@ playerBoard.addEventListener('click', (e) => {
       shipData.currentShip,
       shipData.direction,
     );
+    shipNumber += 1;
   }
   updateGame(humanPlayer, playerBoard);
 });
