@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+  --grid-size: 40px;
+}
+
+@media (max-width: 540px) {
+  :root {
+    --grid-size: 25px;
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    --grid-size: 22px;
+  }
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background: linear-gradient(#5DADE2, #0e2a3d);
+}
+
+main {
+  height: 100%;
+}
+
+#game-boards {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 1px solid black;
+  height: fit-content;
+  width: fit-content;
+  margin: 30px;
+}
+
+#player-board-container {
+  display: flex;
+  justify-content: center;
+}
+
+#rotate-button {
+  position: absolute;
+  font-weight: 900;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: #D6DBDF;
+}
+
+#rotate-button:hover {
+  background-color: #EBEDEF;
+}
+
+.square {
+  height: var(--grid-size);
+  width: var(--grid-size);
+  border: 1px solid black;
+  background-color: rgba(133, 193, 233, 0.25);
+}
+
+#computer-board .square:hover {
+  background-color: rgba(133, 193, 233, 0.75);
+}
+
+.ship-hover {
+  background-color: rgba(44, 62, 80, 0.33);
+}
+
+#player-board .has-ship {
+  background-color: #2C3E50;
+}
+
+.is-hit {
+  background-color: #D0D3D4;
+}
+
+#computer-board .is-hit:hover {
+  background-color: #D0D3D4;
+}
+
+.ship-hit {
+  background-color: #C0392B;
+}
+
+#computer-board .ship-hit:hover {
+  background-color: #C0392B;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#overlay-content {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  padding: 5rem;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+#overlay-content button {
+  font-size: 1rem;
+  padding: 5%;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #27AE60;
+}
+
+/*# sourceMappingURL=main.css.map*/
