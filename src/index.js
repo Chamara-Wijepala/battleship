@@ -8,6 +8,7 @@ import gameOver from './modules/gameOver';
 
 const playerBoard = document.getElementById('player-board');
 const computerBoard = document.getElementById('computer-board');
+const rotateButton = document.getElementById('rotate-button');
 
 const humanPlayer = new Player('Human');
 const computerPlayer = new Player('Computer');
@@ -73,11 +74,13 @@ function getCurrentShip() {
   return currentShip;
 }
 
+let currentDirection = 'Horizontal';
+
 // This function needs to return corrent ship and direction
 function getPlayerShipData(e) {
   const coords = Number(e.target.dataset.id);
   const currentShip = getCurrentShip();
-  const direction = 'Horizontal';
+  const direction = currentDirection;
   const collides = checkCollisions(coords, currentShip, humanPlayer, direction);
   return {
     coords,
@@ -111,6 +114,14 @@ playerBoard.addEventListener('click', (e) => {
     shipNumber += 1;
   }
   updateGame(humanPlayer, playerBoard);
+});
+
+rotateButton.addEventListener('click', () => {
+  if (currentDirection === 'Horizontal') {
+    currentDirection = 'Vertical';
+  } else {
+    currentDirection = 'Horizontal';
+  }
 });
 
 startGame();
