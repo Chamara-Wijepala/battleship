@@ -52,11 +52,17 @@ function computerTurn() {
   checkIfGameOver(humanPlayer);
 }
 
+let playerShipNumber = 0;
+const playerShips = Object.entries(humanPlayer.ships);
+
 // Run receiveAttack on clicked square if currentPlayer is humanPlayer,
 // then switch player and call computerTurn()
 computerBoard.addEventListener('click', (e) => {
   const coords = e.target.dataset.id;
-  if (currentPlayer === humanPlayer && computerPlayer.gameBoard.board[coords].isHit === false) {
+  if (
+    (currentPlayer === humanPlayer && computerPlayer.gameBoard.board[coords].isHit === false)
+    && playerShipNumber > 4
+  ) {
     const ship = computerPlayer.gameBoard.board[coords].shipObject;
     computerPlayer.gameBoard.receiveAttack(coords, ship);
     switchPlayer();
@@ -66,11 +72,8 @@ computerBoard.addEventListener('click', (e) => {
   }
 });
 
-const playerShips = Object.entries(humanPlayer.ships);
-let shipNumber = 0;
-
 function getCurrentShip() {
-  const currentShip = playerShips[shipNumber][1];
+  const currentShip = playerShips[playerShipNumber][1];
   return currentShip;
 }
 
@@ -92,26 +95,28 @@ function getPlayerShipData(e) {
 
 // Displays current ship on playerBoard when hovering over it
 playerBoard.addEventListener('mousemove', (e) => {
-  const shipData = getPlayerShipData(e);
-  humanPlayer.gameBoard.shipHover(
-    shipData.coords,
-    shipData.currentShip,
-    shipData.direction,
-    shipData.collides,
-  );
-  updateGame(humanPlayer, playerBoard);
+  if (playerShipNumber < 5) {
+    const shipData = getPlayerShipData(e);
+    humanPlayer.gameBoard.shipHover(
+      shipData.coords,
+      shipData.currentShip,
+      shipData.direction,
+      shipData.collides,
+    );
+    updateGame(humanPlayer, playerBoard);
+  }
 });
 
 // Places a ship on playerBoard when you click on a square
 playerBoard.addEventListener('click', (e) => {
   const shipData = getPlayerShipData(e);
-  if (!shipData.collides) {
+  if (!shipData.collides && playerShipNumber < 5) {
     humanPlayer.gameBoard.placeShip(
       shipData.coords,
       shipData.currentShip,
       shipData.direction,
     );
-    shipNumber += 1;
+    playerShipNumber += 1;
   }
   updateGame(humanPlayer, playerBoard);
 });
