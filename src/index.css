@@ -82,7 +82,7 @@ main {
   background-color: rgba(44, 62, 80, 0.33);
 }
 
-.has-ship {
+#player-board .has-ship {
   background-color: #2C3E50;
 }
 
