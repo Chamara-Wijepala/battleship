@@ -46,7 +46,25 @@ main {
   border: 1px solid black;
   height: fit-content;
   width: fit-content;
-  margin: 10px;
+  margin: 30px;
+}
+
+#player-board-container {
+  display: flex;
+  justify-content: center;
+}
+
+#rotate-button {
+  position: absolute;
+  font-weight: 900;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: #D6DBDF;
+}
+
+#rotate-button:hover {
+  background-color: #EBEDEF;
 }
 
 .square {
